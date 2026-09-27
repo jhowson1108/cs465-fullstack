@@ -9,6 +9,9 @@ var usersRouter = require('./app_server/routes/users');
 var travelRouter = require('./app_server/routes/travel');
 var handlebars = require('hbs');
 
+// Bring in the database
+require('./app_server/models/db');
+
 var app = express();
 
 // view engine setup
