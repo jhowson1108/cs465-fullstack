@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-4">
+    <h1 class="h3 mb-3">Log In</h1>
+    <div class="alert alert-danger" role="alert" *ngIf="formError">{{ formError }}</div>
+    <form (ngSubmit)="onLoginSubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email"
+          placeholder="Enter email address" [(ngModel)]="credentials.email">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password"
+          placeholder="Password" [(ngModel)]="credentials.password">
+      </div>
+      <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+  </div>
+</div>

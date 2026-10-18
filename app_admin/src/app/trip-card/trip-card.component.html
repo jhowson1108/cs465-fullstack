@@ -6,7 +6,7 @@
     <h6 class="card-subtitle mb-2 text-muted">{{ trip.length }} starting {{ trip.start | date:'mediumDate':'UTC' }} - {{ trip.perPerson | currency:'USD':'symbol' }}</h6>
     <div class="card-text" [innerHTML]="trip.description"></div>
   </div>
-  <div class="card-footer">
+  <div class="card-footer" *ngIf="isLoggedIn()">
     <button (click)="editTrip(trip)" class="btn btn-info me-2">Edit Trip</button>
     <button (click)="deleteTrip(trip)" class="btn btn-danger">Delete Trip</button>
   </div>
