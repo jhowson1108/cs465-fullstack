@@ -2,8 +2,19 @@
   <p class="mb-0">{{ message }}</p>
   <button *ngIf="isLoggedIn()" (click)="addTrip()" class="btn btn-info">Add Trip</button>
 </div>
+<div class="row g-2 mb-3">
+  <div class="col-md-8">
+    <input type="search" class="form-control" placeholder="Search travel by destination, resort or code"
+      aria-label="Search travel" [(ngModel)]="searchText">
+  </div>
+  <div class="col-md-4">
+    <input type="number" class="form-control" placeholder="Max price per person" min="0"
+      aria-label="Max price per person" [(ngModel)]="maxPrice">
+  </div>
+</div>
+<p *ngIf="trips && filteredTrips.length === 0" class="text-muted">No trips match your search.</p>
 <div class="row">
-  <div class="col-md-4 mb-4" *ngFor="let trip of trips">
+  <div class="col-md-4 mb-4" *ngFor="let trip of filteredTrips">
     <app-trip-card [trip]="trip" (tripDeleted)="onTripDeleted()"></app-trip-card>
   </div>
 </div>

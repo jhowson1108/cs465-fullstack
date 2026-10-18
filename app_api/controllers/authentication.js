@@ -9,6 +9,11 @@ const register = async (req, res) => {
             .status(400)
             .json({ message: 'All fields required' });
     }
+    if (req.body.password.length < 8) {
+        return res
+            .status(400)
+            .json({ message: 'Password must be at least 8 characters' });
+    }
 
     const user = new User({
         name: req.body.name,   // Set User name

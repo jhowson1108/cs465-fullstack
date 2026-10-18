@@ -43,4 +43,25 @@ describe('TripListingComponent', () => {
     const cards = fixture.nativeElement.querySelectorAll('app-trip-card');
     expect(cards.length).toEqual(trips.length);
   });
+
+  it('should filter trips by search text', () => {
+    component.searchText = 'gale';
+    expect(component.filteredTrips.map(t => t.code)).toEqual(['GALR210214']);
+  });
+
+  it('should filter trips by max price', () => {
+    component.maxPrice = 1000;
+    expect(component.filteredTrips.every(t => Number(t.perPerson) <= 1000)).toBe(true);
+    expect(component.filteredTrips.length).toBeGreaterThan(0);
+  });
+
+  it('should return no trips when nothing matches', () => {
+    component.searchText = 'no such place';
+    expect(component.filteredTrips.length).toEqual(0);
+  });
+
+  it('should hide the Add Trip button when logged out', () => {
+    const buttons = [...fixture.nativeElement.querySelectorAll('button')] as HTMLElement[];
+    expect(buttons.some(b => b.textContent?.includes('Add Trip'))).toBe(false);
+  });
 });
